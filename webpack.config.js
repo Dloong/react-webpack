@@ -39,7 +39,6 @@ module.exports = (env, argv) => {
                     use: [
                         MiniCssExtractPlugin.loader,
                         'css-loader'
-
                     ]
                 },
                 {
@@ -66,6 +65,13 @@ module.exports = (env, argv) => {
                                         overrideBrowserslist: ['last 2 version', '>1%', 'ios 7']
                                     })
                                 ]
+                            }
+                        },
+                        {
+                            loader: "px2rem-loader",
+                            options:{
+                                remunit: 75,
+                                remPrecision:8
                             }
                         }
                     ]
