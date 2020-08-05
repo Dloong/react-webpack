@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --inline",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=development"
   },
   "author": "",
   "license": "ISC",

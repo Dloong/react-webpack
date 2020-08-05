@@ -10,6 +10,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // css 文件�
 module.exports = (env, argv) => {
     return {
         entry: "./src/main.js",
+        mode: "development",
+
         devServer: {
             contentBase: './dist',
             hot: true
@@ -123,7 +125,7 @@ module.exports = (env, argv) => {
                 cssProcessor: require('cssnano')
             })
         ],
-
+        // devtool: "eval",  //sorrce map
         output: {
             filename: "[name].[hash].js",
             chunkFilename: '[name].bundle.js',
