@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Robot";
+    src:url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap')
+}
+.header_wrap {
+    height: 45px;
+    line-height: 45px;
+    color: #ffffff;
+    background: #FFD100;
+    font-size: 18px;
+    padding: 10px 20px;
+    font-family: "Robot";
+    display: flex;
+}
