@@ -1,1 +1,1 @@
-手动配置react webpack
+## .editorconfig
