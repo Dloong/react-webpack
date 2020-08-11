@@ -47,6 +47,7 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'unicorn', 'promise'],
     rules: {
+        'import/newline-after-import': ERROR,
         'eslint-comments/disable-enable-pair': [ERROR, { allowWholeFile: true }],
 
         'import/extensions': [
