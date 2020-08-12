@@ -12,7 +12,7 @@ const COPYRIGHT = `/** @preserve Powered by react-typescript-boilerplate (https:
 const PROJECT_ROOT = path.resolve(__dirname, '../../');
 const PROJECT_NAME = path.parse(PROJECT_ROOT).name;
 const HMR_PATH = '/__webpack_hmr';
-
+const RESOLV_PATH = path.resolve;
 export {
     __DEV__,
     ENABLE_ANALYZE,
@@ -23,4 +23,5 @@ export {
     PROJECT_NAME,
     PROJECT_ROOT,
     HMR_PATH,
+    RESOLV_PATH,
 };
