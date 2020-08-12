@@ -1,12 +1,17 @@
+import { resolve } from 'path';
 import { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WebpackBar from 'webpackbar';
+import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
+import { projectRoot, resolvePath } from '../env';
+import { PROJECT_ROOT } from '../utils/constants';
 
 const commonConfig: Configuration = {
-    // context: projectRoot,
+    context: projectRoot,
     entry: './src/index.tsx',
     output: {
         publicPath: '/',
-        // path: resolvePath(projectRoot, './dist'),
+        path: resolvePath(projectRoot, './dist'),
         filename: 'js/[name]-[hash].bundle.js',
         // 加盐 hash
         hashSalt: 'react typescript boilerplate',
@@ -27,9 +32,16 @@ const commonConfig: Configuration = {
         ],
     },
     plugins: [
+        // 显示打包进度
+        new WebpackBar({
+            name: 'react-typescript-boilerplate',
+            // react 蓝
+            color: '#61dafb',
+        }),
+        // 处理错误通知
+        new FriendlyErrorsPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Test Demo',
-            template: '/Users/duanshilong/Documents/duan/my-webpack/public/index.html',
+            template: resolve(PROJECT_ROOT, './public/index.html'),
             // 压缩html
             minify: {
                 // 移除注释

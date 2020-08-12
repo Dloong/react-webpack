@@ -64,7 +64,7 @@ function setupMiddlewares(compiler: Compiler, server: Express) {
 async function start() {
     const HOST = '127.0.0.1';
     // 4个备选端口，都被占用会使用随机端口
-    const PORT = await getPort({ port: [3000, 4000, 8080, 8888] });
+    const PORT = await getPort({ port: [8080, 8081, 8082, 8888] });
     const address = `http://${HOST}:${PORT}`;
 
     // 加载 webpack 配置
