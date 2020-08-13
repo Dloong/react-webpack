@@ -1,3 +1,12 @@
+### react-typescript-webpack-cli
+
+<div style="text-align: center">
+
+![Node 12.7.0](https://img.shields.io/static/v1?label=Node&message=V12.7.0&color=<COLOR>) ![Node 12.7.0](https://img.shields.io/static/v1?label=Version&message=V1.0.0&color=orange)
+
+</div>
+<p style="text-align: center">🚀 一款适用于ts + react + webpack的脚手架 💗</p>
+
 ### Git 提交规范：
 
 目的是为了保证每次提交内容的可读性，以及团队成员提交代码的一致性。默认的配置文件是在根目录的.commitlintrc.js.
