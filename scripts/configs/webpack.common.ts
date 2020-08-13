@@ -36,7 +36,7 @@ const commonConfig: Configuration = {
     context: PROJECT_ROOT,
     entry: ['react-hot-loader/patch', RESOLV_PATH(PROJECT_ROOT, './src/index.tsx')],
     output: {
-        publicPath: '/',
+        publicPath: './',
         path: RESOLV_PATH(PROJECT_ROOT, './dist'),
         filename: 'js/[name]-[hash].bundle.js',
         // 加盐 hash
@@ -61,7 +61,6 @@ const commonConfig: Configuration = {
         // 显示打包进度
         new WebpackBar({
             name: 'react-typescript-boilerplate',
-            // react 蓝
             color: '#61dafb',
         }),
         // 循环依赖
@@ -106,7 +105,7 @@ const commonConfig: Configuration = {
                         files: assets,
                         options,
                     },
-                    // 除掉 publicPath 的反斜杠，让用户在模板中拼接路径更自然
+                    // 除掉 publicPath 的反斜杠
                     PUBLIC_PATH: rawPublicPath.endsWith('/')
                         ? rawPublicPath.slice(0, -1)
                         : rawPublicPath,

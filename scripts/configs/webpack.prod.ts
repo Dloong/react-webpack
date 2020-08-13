@@ -23,7 +23,7 @@ const mergedConfig = merge(commonConfig, {
             typescript: {
                 // 生产环境打包并不频繁，可以适当调高允许使用的内存，加快类型检查速度
                 memoryLimit: 1024 * 2,
-                configFile: RESOLV_PATH(PROJECT_ROOT, './src/tsconfig.json'),
+                configFile: RESOLV_PATH(PROJECT_ROOT, './tsconfig.json'),
             },
         }),
         new MiniCssExtractPlugin({
