@@ -9,7 +9,6 @@ import historyFallback from 'connect-history-api-fallback';
 import cors from 'cors';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-
 import proxy from './proxy';
 import devConfig from './configs/webpack.dev';
 // import { hmrPath } from './env';
@@ -100,9 +99,7 @@ async function start() {
         });
     });
 }
-
-// 写过 python 的人应该不会陌生这种写法
-// require.main === module 判断这个模块是不是被直接运行的
+// 当直接从Node.js运行文件时，require.main设置为其模块。这意味着可以通过测试require.main ===模块来确定文件是否已经直接运行。
 if (require.main === module) {
     start();
 }
