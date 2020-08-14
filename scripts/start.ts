@@ -28,8 +28,6 @@ function openBrowser(compiler: Compiler, address: string) {
 }
 
 function setupMiddlewares(compiler: Compiler, server: Express) {
-    const publicPath = devConfig.output!.publicPath!;
-
     // 设置代理
     proxy(server);
 
@@ -40,8 +38,7 @@ function setupMiddlewares(compiler: Compiler, server: Express) {
     server.use(cors());
 
     const devMiddlewareOptions: webpackDevMiddleware.Options = {
-        // 保持和 webpack 中配置一致
-        publicPath,
+        publicPath: '/',
         // 只在发生错误或有新的编译时输出
         stats: 'minimal',
         // 需要输出文件到磁盘可以开启
