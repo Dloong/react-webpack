@@ -8,6 +8,7 @@ import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CompressionPlugin from 'compression-webpack-plugin';
 import SizePlugin from 'size-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import commonConfig from './webpack.common';
 import { COPYRIGHT, ENABLE_ANALYZE, PROJECT_ROOT, RESOLV_PATH } from '../utils/constants';
 
@@ -18,6 +19,7 @@ const mergedConfig = merge(commonConfig, {
             raw: true,
             banner: COPYRIGHT,
         }),
+        new CleanWebpackPlugin(),
         new HashedModuleIdsPlugin(),
         new ForkTsCheckerWebpackPlugin({
             typescript: {

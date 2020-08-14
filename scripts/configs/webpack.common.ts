@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+
 import CopyPlugin from 'copy-webpack-plugin';
 import { __DEV__, PROJECT_NAME, PROJECT_ROOT, HMR_PATH, RESOLV_PATH } from '../utils/constants';
 
@@ -72,7 +72,7 @@ const commonConfig: Configuration = {
         }),
         // 处理错误通知
         new FriendlyErrorsPlugin(),
-        new CleanWebpackPlugin(),
+
         new CopyPlugin({
             patterns: [
                 {

@@ -64,11 +64,13 @@ async function start() {
     const HOST = '127.0.0.1';
     // 4个备选端口，都被占用会使用随机端口
     const PORT = await getPort({ port: [8080, 8081, 8082, 8888] });
-    const address = `http://${HOST}:${PORT}`;
+    const ipAddress = `http://${HOST}:${PORT}`;
+    const localhost = `http://localhost:${PORT}`;
+    const address = `${chalk.greenBright(ipAddress)} or ${chalk.greenBright(localhost)}`;
 
     // 加载 webpack 配置
     const compiler = webpack(devConfig);
-    openBrowser(compiler, address);
+    openBrowser(compiler, localhost);
 
     const devServer = express();
     setupMiddlewares(compiler, devServer);
