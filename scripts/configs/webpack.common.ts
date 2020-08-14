@@ -60,7 +60,7 @@ const commonConfig: Configuration = {
     plugins: [
         // 显示打包进度
         new WebpackBar({
-            name: 'react-typescript-boilerplate',
+            name: 'react-typescript-webpack',
             color: '#61dafb',
         }),
         // 循环依赖
