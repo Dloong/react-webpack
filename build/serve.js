@@ -1,7 +1,8 @@
 const express = require('express');
 const webpack = require('webpack');
+const chalk = require('chalk')
 const webpackDevMiddleware = require('webpack-dev-middleware');
-
+const getPort = require('get-port');
 const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
@@ -14,7 +15,25 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 
-// Serve the files on port 3000.
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!\n');
-});
+async function serve() {
+  const HOST = '127.0.0.1';
+  // 4个备选端口，都被占用会使用随机端口
+  const PORT = await getPort({
+    port: [8080, 8081, 8082, 8888]
+  });
+  const ipAddress = `http://${HOST}:${PORT}`;
+  const localhost = `http://localhost:${PORT}`;
+  const address = `${chalk.greenBright(ipAddress)} or ${chalk.greenBright(localhost)}`;
+
+  const httpServer = app.listen(PORT, HOST, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(
+      `App is running at ${chalk.magenta.underline(address)}`,
+    );
+  });
+}
+
+serve()
