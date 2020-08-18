@@ -6,8 +6,8 @@
     "author": "shilong.duan@gmail.com",
     "license": "MIT",
     "scripts": {
-        "start": "cross-env-shell NODE_ENV=development ts-node --files -P ./tsconfig.json ./scripts/start.ts --open",
-        "build": "cross-env-shell NODE_ENV=production ts-node --files -P ./tsconfig.json scripts/build",
+        "start": "cross-env-shell NODE_ENV=development ts-node --files -P ./scripts/tsconfig.json ./scripts/start.ts --open",
+        "build": "cross-env-shell NODE_ENV=production ts-node --files -P ./scripts/tsconfig.json scripts/build",
         "build-analyze": "yarn build --analyze",
         "lint": "yarn run lint-eslint && yarn run lint-stylelint",
         "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js {src,scripts}/**/*.{ts,tsx,js}",
