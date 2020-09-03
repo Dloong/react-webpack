@@ -14,6 +14,34 @@ import { COPYRIGHT, ENABLE_ANALYZE, PROJECT_ROOT, RESOLV_PATH } from '../utils/c
 
 const mergedConfig = merge(commonConfig, {
     mode: 'production',
+    module: {
+        rules: [
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                          hmr: process.env.NODE_ENV === 'development',
+                        },
+                    },
+
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
+            }
+        ]
+    },
     plugins: [
         new BannerPlugin({
             raw: true,
@@ -33,9 +61,28 @@ const mergedConfig = merge(commonConfig, {
             chunkFilename: 'css/[id].[contenthash].css',
             ignoreOrder: false,
         }),
+
         new CompressionPlugin({ cache: true }),
+
     ],
+
     optimization: {
+        splitChunks: {
+            chunks: "all",
+            minSize: 10000,
+            cacheGroups: {
+                materialVendors: {
+                    test: /[/\\]node_modules[/\\]@material-ui/,
+                    priority: 10,
+                    name: 'materialui~vendors'
+                },
+                react: {
+                    test: /[/\\]node_modules[/\\]react/,
+                    priority: 10,
+                    name: 'React-lib'
+                }
+            },
+         },
         runtimeChunk: 'single',
         minimize: true,
         minimizer: [new TerserPlugin({ extractComments: false }), new OptimizeCSSAssetsPlugin()],

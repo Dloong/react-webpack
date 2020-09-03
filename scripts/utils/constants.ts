@@ -13,6 +13,31 @@ const PROJECT_ROOT = path.resolve(__dirname, '../../');
 const PROJECT_NAME = 'react-ts-webpack';
 const HMR_PATH = '/__webpack_hmr';
 const RESOLV_PATH = path.resolve;
+const htmlMinifyOptions = {
+    // 移除注释
+    removeComments: true,
+    // 不要留下任何空格
+    collapseWhitespace: true,
+    // 当值匹配默认值时删除属性
+    removeRedundantAttributes: true,
+    // 使用短的doctype替代doctype
+    useShortDoctype: true,
+    // 移除空属性
+    removeEmptyAttributes: true,
+    // 从style和link标签中删除type="text/css"
+    removeStyleLinkTypeAttributes: true,
+    // 保留单例元素的末尾斜杠。
+    keepClosingSlash: true,
+    // 在脚本元素和事件属性中缩小JavaScript(使用UglifyJS)
+    minifyJS: true,
+    // 缩小CSS样式元素和样式属性
+    // minifyCSS: true,
+    // 在各种属性中缩小url
+    minifyURLs: true,
+    collapseBooleanAttributes: true,
+    collapseInlineTagWhitespace: true,
+    removeScriptTypeAttributes: true,
+};
 export {
     __DEV__,
     ENABLE_ANALYZE,
@@ -24,4 +49,5 @@ export {
     PROJECT_ROOT,
     HMR_PATH,
     RESOLV_PATH,
+    htmlMinifyOptions
 };
