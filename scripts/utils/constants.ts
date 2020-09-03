@@ -1,5 +1,6 @@
 import path from 'path';
 import { argv } from 'yargs';
+import envsConfig from '../../config';
 
 const __DEV__ = process.env.NODE_ENV !== 'production';
 const ENABLE_ANALYZE = !!argv.analyze;
@@ -38,6 +39,8 @@ const htmlMinifyOptions = {
     collapseInlineTagWhitespace: true,
     removeScriptTypeAttributes: true,
 };
+const envType = (argv.env as string) ?? 'dev';
+const REACT_APP_ENV = Object.assign({},{NODE_ENV: process.env.NODE_ENV}, envsConfig[envType].react_app)
 export {
     __DEV__,
     ENABLE_ANALYZE,
@@ -49,5 +52,6 @@ export {
     PROJECT_ROOT,
     HMR_PATH,
     RESOLV_PATH,
+    REACT_APP_ENV,
     htmlMinifyOptions
 };

@@ -7,7 +7,7 @@ const resources = {
     en,
     id
 };
-
+const lang = process.env.lang
 i18n
   // pass the i18n instance to react-i18next.
   .use(initReactI18next)
@@ -15,8 +15,8 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     resources,
-    lng: 'id',
-    fallbackLng: 'id',
+    lng: lang,
+    fallbackLng: lang,
     whitelist: ['id', 'en'],
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

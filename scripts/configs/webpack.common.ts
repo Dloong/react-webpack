@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
@@ -8,7 +8,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import LodashModuleReplacementPlugin from "lodash-webpack-plugin";
 import InterpolateHtmlPlugin from "../plugins/InterpolateHtmlPlugin"
 // css 文件分离
-import { __DEV__, PROJECT_ROOT, HMR_PATH, RESOLV_PATH, htmlMinifyOptions } from '../utils/constants';
+import { __DEV__, PROJECT_ROOT, HMR_PATH, RESOLV_PATH, htmlMinifyOptions, REACT_APP_ENV } from '../utils/constants';
 
 
 const commonConfig: Configuration = {
@@ -54,6 +54,9 @@ const commonConfig: Configuration = {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(REACT_APP_ENV)
+        }),
         // 显示打包进度
         new WebpackBar({
             name: 'react-typescript-webpack',
