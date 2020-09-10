@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography, IconButton, Toolbar, AppBar, Box} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -36,7 +36,7 @@ export interface AppHeaderProps {
 }
 
 
- function ButtonAppBar(props: AppHeaderProps) {
+ function ButtonAppBar(props: AppHeaderProps):ReactElement {
    const history = useHistory()
   const classes = useStyles();
     const handleBack = ()=> {
@@ -46,27 +46,27 @@ export interface AppHeaderProps {
         window.history.go(-1)
       }
     }
-    const {title, isClose, endIcon, showBack, backgroundColor, handleEnd, children} = props
+    const {title, isClose, endIcon, showBack, backgroundColor, handleEnd, children, className} = props
   return (
-    <div className={ props.className}>
-      <AppBar className={classes.headerSty} position="static" style={{backgroundColor}}>
-        <Toolbar>
-          {
+      <div className={ className}>
+          <AppBar className={classes.headerSty} position="static" style={{backgroundColor}}>
+              <Toolbar>
+                  {
             showBack? <IconButton className={classes.header_icon} edge="start" color="inherit" aria-label="menu" onClick={handleBack}>
-            {isClose?<CloseIcon />: <ArrowBackIosIcon />}
-          </IconButton> : <Box className={classes.header_icon} display="flex" justifyContent="center">{children}</Box>
+                {isClose?<CloseIcon />: <ArrowBackIosIcon />}
+            </IconButton> : <Box className={classes.header_icon} display="flex" justifyContent="center">{children}</Box>
           }
-          <Typography  variant="h6" className={classes.title}>
-            <Box textAlign="center" fontSize={20} fontWeight={600} >
-              {title}
-            </Box>
-          </Typography>
-          <Box onClick={handleEnd}  className={classes.header_icon} display="flex" justifyContent="center">
-            {endIcon}
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </div>
+                  <Typography  variant="h6" className={classes.title}>
+                      <Box textAlign="center" fontSize={20} fontWeight={600} >
+                          {title}
+                      </Box>
+                  </Typography>
+                  <Box onClick={handleEnd}  className={classes.header_icon} display="flex" justifyContent="center">
+                      {endIcon}
+                  </Box>
+              </Toolbar>
+          </AppBar>
+      </div>
   );
 }
 

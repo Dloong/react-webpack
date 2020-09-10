@@ -1,8 +1,9 @@
 import React from 'react';
 import RouterView from "../routes"
-function App () {
+
+function App ():React.ReactElement {
   return (
-    <RouterView></RouterView>
+      <RouterView />
   );
 }
 export default App

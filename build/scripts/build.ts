@@ -1,7 +1,6 @@
 import webpack from 'webpack';
-
-import prodConfig from './configs/webpack.prod';
-import { ENABLE_ANALYZE } from './utils/constants';
+import prodConfig from '../configs/webpack.prod';
+import { ENABLE_ANALYZE } from '../utils/constants';
 
 const compiler = webpack(prodConfig);
 

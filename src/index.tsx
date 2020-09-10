@@ -11,20 +11,20 @@ import App from './pages/App';
 
 
 ReactDOM.render(
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Suspense fallback={null}>
-                    <SnackbarProvider
-                        maxSnack={1}
-                        anchorOrigin={{
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Suspense fallback={null}>
+            <SnackbarProvider
+                maxSnack={1}
+                anchorOrigin={{
                             vertical: 'top',
                             horizontal: 'center',
                         }}
                     >
-                        <App />
-                    </SnackbarProvider>
-                </Suspense>
-            </ThemeProvider>,
+                <App />
+            </SnackbarProvider>
+        </Suspense>
+    </ThemeProvider>,
     document.querySelector('#root'),
 );
 

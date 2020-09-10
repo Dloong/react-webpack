@@ -109,7 +109,7 @@ module.exports = {
             },
         },
         {
-            files: ['scripts/**/*.ts'],
+            files: ['build/**/*.ts'],
             rules: {
                 'import/no-extraneous-dependencies': OFF,
             },

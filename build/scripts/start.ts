@@ -1,23 +1,27 @@
 import chalk from 'chalk';
-import getPort from 'get-port';
 import logSymbols from 'log-symbols';
-import open from 'open';
 import { argv } from 'yargs';
 import express from 'express';
-import webpack, { Stats } from 'webpack';
+import webpack from 'webpack';
 import historyFallback from 'connect-history-api-fallback';
 import { Options } from 'http-proxy-middleware/dist/types';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import internalIp from 'internal-ip';
-import webpackConfig from './configs/webpack.dev';
-import envsConfig from '../config';
+import webpackConfig from '../configs/webpack.dev';
+import envsConfig from '../../config';
+import openBrowsers from "../react-dev-utils/openBrowser";
+import {choosePort, prepareUrls, IprepareUrl }from "../react-dev-utils/getPortAndPath";
 
 const app = express();
 const compiler = webpack(webpackConfig);
 // handle fallback for HTML5 history AP
 app.use(historyFallback());
+
+const HOST = process.env.HOST || '0.0.0.0'
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+// Tools like Cloud9 rely on this.
+const DEFAULT_PORT = Number.parseInt(process.env.PORT, 10) || 3000;
 
 // 修饰链接的辅助函数, 修改颜色并添加下划线
 function renderLink(str: string) {
@@ -40,24 +44,16 @@ function httpProxy(): any {
 }
 
 // 打开浏览器
-function openBrowser(port: number) {
-    const ipAddress = `http://${internalIp.v4.sync()}:${port}`;
-    const localhost = `http://localhost:${port}`;
-    if (argv.open) {
-        let hadOpened = false;
+async function openBrowser(urls: IprepareUrl) {
+
+    openBrowsers(urls.localUrlForBrowser)
         // 编译完成时执行
-        compiler.hooks.done.tap('open-browser-plugin', async (stats: Stats) => {
+        compiler.hooks.done.tap('open-browser-plugin',  () => {
             console.log(`🚀 DevServer is running at
-                    ${chalk.greenBright(localhost)} ${logSymbols.success}
-                    ${chalk.greenBright(ipAddress)} ${logSymbols.success}
+                    ${chalk.greenBright(urls.localUrlForBrowser)} ${logSymbols.success}
+                    ${chalk.greenBright(urls.lanUrlForTerminal)} ${logSymbols.success}
             `);
-            // 没有打开过浏览器并且没有编译错误就打开浏览器
-            if (!hadOpened && !stats.hasErrors()) {
-                await open(localhost);
-                hadOpened = true;
-            }
         });
-    }
 }
 
 // 设置webpack-dev-middleware
@@ -82,14 +78,21 @@ function setupMiddleware() {
 }
 
 async function start() {
-    // 4个备选端口，都被占用会使用随机端口
-    const PORT = await getPort({ port: [3000, 3001, 3002, 3003] });
-    setupMiddleware();
-    openBrowser(PORT);
 
+    const PORT = await choosePort(HOST, DEFAULT_PORT);
+    const urls = prepareUrls(
+        protocol,
+        HOST,
+        PORT,
+       '/'
+     );
+     console.log(urls);
+
+    setupMiddleware();
     // Serve the files on port 3000.
     const httpSever = app.listen(PORT, function () {
         console.log('App is running...');
+        openBrowser(urls);
     });
 
     // 我们监听了 node 信号，所以使用 cross-env-shell 而不是 cross-env
