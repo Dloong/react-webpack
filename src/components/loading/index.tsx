@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from "react"
 import ReactDOM from "react-dom"
 import { CircularProgress, Backdrop } from "@material-ui/core"
@@ -40,6 +41,7 @@ const div = document.createElement("div")
 const props = {}
 document.body.append(div)
 
+// eslint-disable-next-line react/no-render-return-value
 const Box = ReactDOM.render(React.createElement(ProgressLoading, props), div)
 
 export default Box
