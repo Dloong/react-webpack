@@ -1,13 +1,13 @@
-### react-typescript-webpack-cli
+# TWR基础构建工具
 
 <div style="text-align: center">
 
-![Node 12.7.0](https://img.shields.io/static/v1?label=Node&message=V12.7.0&color=<COLOR>) ![Node 12.7.0](https://img.shields.io/static/v1?label=Version&message=V1.0.0&color=orange)
+![Node 12.7.0](https://img.shields.io/static/v1?label=Node&message=V12.7.0&color=<COLOR>) ![Webpack 4.44.1](https://img.shields.io/static/v1?label=Webpack&message=V4.44.1&color=<COLOR>) ![Node 12.7.0](https://img.shields.io/static/v1?label=Version&message=V1.0.0&color=orange) 
 
 </div>
 <p style="text-align: center">🚀 一款适用于ts + react + webpack的脚手架 💗</p>
 
-# TWR基础构建工具
+
 ![技术架构](https://user-images.githubusercontent.com/54270712/92572000-6c1c8700-f2b6-11ea-828f-f12f2df9ccd3.png)
 
 ## 背景
