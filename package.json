@@ -6,7 +6,11 @@
     "author": "shilong.duan@gmail.com",
     "license": "MIT",
     "scripts": {
-        "serve": "cross-env-shell NODE_ENV=development ts-node --files -P ./build/tsconfig.json ./build/scripts/start.ts --open"
+        "serve": "cross-env-shell NODE_ENV=development ts-node --files -P ./build/tsconfig.json ./build/scripts/start.ts --open",
+        "build": "cross-env-shell NODE_ENV=production  ts-node-script -T --files  ./build/scripts/build --env=dev",
+        "build-sit": "cross-env-shell NODE_ENV=production ts-node-script -T --files  ./build/scripts/build --env=sit",
+        "build-prod": "cross-env-shell NODE_ENV=production ts-node-script -T --files ./build/scripts/build --env=prod",
+        "build-analyze": "yarn build --analyze"
     },
     "dependencies": {
         "@material-ui/core": "^4.11.0",
