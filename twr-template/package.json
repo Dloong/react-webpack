@@ -6,7 +6,13 @@
     "author": "shilong.duan@gmail.com",
     "license": "MIT",
     "scripts": {
-        "serve": "cross-env-shell NODE_ENV=development ts-node --files -P ./build/tsconfig.json ./build/scripts/start.ts --open"
+        "serve": "cross-env-shell NODE_ENV=development ts-node --files -P ./build/tsconfig.json ./build/scripts/start.ts --open",
+        "debugger": "cross-env-shell NODE_ENV=development ts-node  --files -P ./build/tsconfig.json ./build/scripts/start.ts",
+        "build": "cross-env-shell NODE_ENV=production ts-node --files -P ./build/tsconfig.json ./build/scripts/build",
+        "build-analyze": "yarn build --analyze",
+        "lint": "yarn run lint-eslint && yarn run lint-stylelint",
+        "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js build/**/*.ts src/**/*.{tsx,ts}",
+        "lint-stylelint": "stylelint --config .stylelintrc.json src/**/*.scss --syntax scss"
     },
     "dependencies": {
         "@material-ui/core": "^4.11.0",
@@ -165,6 +171,16 @@
         "hooks": {
             "commit-msg": "commitlint -c .commitlintrc.js -E HUSKY_GIT_PARAMS"
         }
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js}": [
+            "eslint -c .eslintrc.js"
+        ],
+        "*.{css,less,scss}": [
+            "stylelint --config .stylelintrc.json"
+        ],
+        "*.{ts,tsx,js,json,html,yml,css,less,scss,md}": [
+            "prettier --write"
+        ]
     }
-
 }
