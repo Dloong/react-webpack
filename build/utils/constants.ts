@@ -14,6 +14,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '../../');
 const PROJECT_NAME = 'react-ts-webpack';
 const HMR_PATH = '/__webpack_hmr';
 const RESOLV_PATH = path.resolve;
+
 const htmlMinifyOptions = {
     // 移除注释
     removeComments: true,

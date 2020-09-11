@@ -10,7 +10,7 @@ import InterpolateHtmlPlugin from "../plugins/InterpolateHtmlPlugin"
 // css 文件分离
 import { __DEV__, PROJECT_ROOT, HMR_PATH, RESOLV_PATH, htmlMinifyOptions, REACT_APP_ENV } from '../utils/constants';
 
-
+console.log(RESOLV_PATH(__dirname, 'src'),22)
 const commonConfig: Configuration = {
     context: PROJECT_ROOT,
     entry: ['react-hot-loader/patch', RESOLV_PATH(PROJECT_ROOT, './src/index.tsx')],
@@ -26,6 +26,9 @@ const commonConfig: Configuration = {
             RESOLV_PATH('src'),
             RESOLV_PATH('node_modules')
           ],
+          alias: {
+            '@': RESOLV_PATH(__dirname, '../../', 'src')
+          }
     },
 
     module: {
